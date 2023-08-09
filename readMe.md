@@ -1,6 +1,6 @@
 # JavaScript Learning Journey
 
-Welcome to my JavaScript Learning Adventures repository! 🌟
+Welcome to my JavaScript Learning Journey repository! 🌟
 
 ## About
 
