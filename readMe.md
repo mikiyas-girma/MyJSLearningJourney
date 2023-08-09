@@ -22,7 +22,7 @@ Your feedback and contributions are highly appreciated. Whether you're a fellow 
 
 Connect with me:
 - GitHub: **[Mikiyas-girma](https://github.com/mikiyas-girma)**
-- Telegram: **Mike](https://t.me/michah16)**
+- Telegram: **[Mike](https://t.me/michah16)**
 
 Happy coding! 🚀
 
