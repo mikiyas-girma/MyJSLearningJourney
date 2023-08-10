@@ -43,3 +43,12 @@ function addTask(e) {
 
   e.preventDefault();
 }
+
+/* lets add the functionality that the delete icon to delete items from the list */
+
+document.body.addEventListener('click', deleteItem);
+
+ function deleteItem(e) {
+    if(e.target.parentElement.classList.contains('delete-item'))
+  e.target.parentElement.parentElement.remove();
+ }
