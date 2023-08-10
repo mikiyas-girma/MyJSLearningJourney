@@ -12,6 +12,10 @@ loadEventListeners();
 function loadEventListeners() {
   // Add task event
   form.addEventListener('submit', addTask);
+  // remove task
+  taskList.addEventListener('click', deleteItem);
+  // clear all the tasks
+  clearBtn.addEventListener('click', clearTasks);
 }
 
 // Add Task
@@ -42,13 +46,31 @@ function addTask(e) {
   taskInput.value = '';
 
   e.preventDefault();
+  console.log(li)
 }
 
 /* lets add the functionality that the delete icon to delete items from the list */
 
-document.body.addEventListener('click', deleteItem);
+
 
  function deleteItem(e) {
     if(e.target.parentElement.classList.contains('delete-item'))
+    if(confirm('Are you sure'))
   e.target.parentElement.parentElement.remove();
  }
+
+ // let do the clear tasks btn to remove all tasks all in once
+
+ function clearTasks() {
+
+  // two ways to implement this 
+  if(confirm('you sure to clear all the tasks?'))
+  // taskList.innerHTML = '';
+
+  // or using loop (this is faster way )
+  while(taskList.firstChild)
+    taskList.removeChild(taskList.firstChild);
+
+ }
+
+ 
