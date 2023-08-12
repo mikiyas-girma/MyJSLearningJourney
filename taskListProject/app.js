@@ -14,10 +14,10 @@ function loadEventListeners() {
   document.addEventListener('DOMContentLoaded', getTasks);
   // Add task event
   form.addEventListener('submit', addTask);
-  // persist task to local storage
-  form.addEventListener('submit', persistToLocal);
   // remove task
   taskList.addEventListener('click', deleteItem);
+  // delete permanently from local storage
+  taskList.addEventListener('click', deleteFromLocal);
   // clear all the tasks
   clearBtn.addEventListener('click', clearTasks);
   // filter through task
@@ -25,6 +25,7 @@ function loadEventListeners() {
 }
 
 function getTasks() {
+  
   if(localStorage.getItem('tasks') === null) {
     tasks = [];
   } else {
@@ -61,7 +62,7 @@ function getTasks() {
 function addTask(e) {
   if(taskInput.value === '') {
     alert('Add a task');
-  }
+  } else {
 
   // Create li element
   const li = document.createElement('li');
@@ -81,19 +82,22 @@ function addTask(e) {
   // Append li to ul
   taskList.appendChild(li);
 
+    // Also save it to local storage
+    persistToLocal(taskInput.value);
+
   // Clear input
   taskInput.value = '';
 
+  }
 
   e.preventDefault();
   // console.log(li)
 }
 
-function persistToLocal() {
+// lets persist the tasks to local storage 
 
-  // lets persist the tasks to local storage 
- 
-  const task = taskInput.value;
+function persistToLocal(task) {
+let tasks;
   if(localStorage.getItem('tasks') === null){
     tasks = [];
   }else {
@@ -101,7 +105,25 @@ function persistToLocal() {
   }
   tasks.push(task);
   localStorage.setItem('tasks', JSON.stringify(tasks));
-  
+    // Clear input
+    taskInput.value = '';
+}
+
+
+// delete task from local storage
+
+function deleteFromLocal(taskItem) {
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  tasks.forEach(function(task, index) {
+    if(taskItem.textContent === task) {
+      tasks.splice(index, 1);
+    }
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 /* lets add the functionality that the delete icon to delete items from the list */
@@ -110,12 +132,17 @@ function persistToLocal() {
     if(e.target.parentElement.classList.contains('delete-item'))
     if(confirm('Are you sure'))
   e.target.parentElement.parentElement.remove();
+
+// also delete it from local storage
+  deleteFromLocal(e.target.parentElement.parentElement);
+
  }
 
  // let do the clear tasks btn to remove all tasks all in once
 
  function clearTasks() {
 
+  console.log(taskList);
   // two ways to implement this 
   if(confirm('you sure to clear all the tasks?'))
   // taskList.innerHTML = '';
@@ -124,7 +151,10 @@ function persistToLocal() {
   while(taskList.firstChild)
     taskList.removeChild(taskList.firstChild);
 
- }
+  // also lets clear it from localstorage also
+  localStorage.removeItem('tasks');
+}
+
 
  // filter tasks
  function filterTasks(e) {
