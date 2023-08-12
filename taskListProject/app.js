@@ -16,12 +16,24 @@ function loadEventListeners() {
   form.addEventListener('submit', addTask);
   // remove task
   taskList.addEventListener('click', deleteItem);
-  // delete permanently from local storage
-  taskList.addEventListener('click', deleteFromLocal);
   // clear all the tasks
   clearBtn.addEventListener('click', clearTasks);
   // filter through task
   filter.addEventListener('keyup', filterTasks);
+}
+
+// display clear tasks button based on existance of task
+// console.log(localStorage.getItem('tasks'));
+task = JSON.parse(localStorage.getItem('tasks'));
+if(localStorage.getItem('tasks') === null)
+task = [];
+// console.log(task.length);
+if(localStorage.getItem('tasks') === null || task.length === 0 ) {
+  if(task.length === 0){
+clearBtn.style.display = 'none';  
+}else {
+clearBtn.style.display = 'inline-block';
+}
 }
 
 function getTasks() {
@@ -84,6 +96,7 @@ function addTask(e) {
 
     // Also save it to local storage
     persistToLocal(taskInput.value);
+    clearBtn.style.display = 'inline-block';
 
   // Clear input
   taskInput.value = '';
@@ -115,15 +128,20 @@ let tasks;
 function deleteFromLocal(taskItem) {
   if(localStorage.getItem('tasks') === null){
     tasks = [];
+    localStorage.clear('tasks');
   }else {
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
+  if(tasks.length == 0) {
+    localStorage.removeItem('tasks');
+  } else {
   tasks.forEach(function(task, index) {
     if(taskItem.textContent === task) {
       tasks.splice(index, 1);
     }
   });
   localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 }
 
 /* lets add the functionality that the delete icon to delete items from the list */
@@ -135,14 +153,12 @@ function deleteFromLocal(taskItem) {
 
 // also delete it from local storage
   deleteFromLocal(e.target.parentElement.parentElement);
-
  }
 
  // let do the clear tasks btn to remove all tasks all in once
 
  function clearTasks() {
 
-  console.log(taskList);
   // two ways to implement this 
   if(confirm('you sure to clear all the tasks?'))
   // taskList.innerHTML = '';
@@ -153,6 +169,7 @@ function deleteFromLocal(taskItem) {
 
   // also lets clear it from localstorage also
   localStorage.removeItem('tasks');
+  clearBtn.style.display = 'none';
 }
 
 
