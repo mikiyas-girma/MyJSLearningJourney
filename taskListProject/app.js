@@ -10,8 +10,12 @@ loadEventListeners();
 
 // Load all event listeners
 function loadEventListeners() {
+  // dom content load event
+  document.addEventListener('DOMContentLoaded', getTasks);
   // Add task event
   form.addEventListener('submit', addTask);
+  // persist task to local storage
+  form.addEventListener('submit', persistToLocal);
   // remove task
   taskList.addEventListener('click', deleteItem);
   // clear all the tasks
@@ -19,6 +23,39 @@ function loadEventListeners() {
   // filter through task
   filter.addEventListener('keyup', filterTasks);
 }
+
+function getTasks() {
+  if(localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+   // load to ul from the local storage 
+
+   for(let i = 0; i < tasks.length; i++) {
+    // Create li element
+ const li = document.createElement('li');
+ // Add class
+ li.className = 'collection-item';
+ // Create text node and append to li
+ li.appendChild(document.createTextNode(tasks[i]));
+ // Create new link element
+ const link = document.createElement('a');
+ // Add class
+ link.className = 'delete-item secondary-content';
+ // Add icon html
+ link.innerHTML = '<i class="fa fa-remove"></i>';
+ // Append the link to li
+ li.appendChild(link);
+
+ // Append li to ul
+ taskList.appendChild(li);
+ }
+
+
+}
+
 
 // Add Task
 function addTask(e) {
@@ -47,13 +84,27 @@ function addTask(e) {
   // Clear input
   taskInput.value = '';
 
+
   e.preventDefault();
-  console.log(li)
+  // console.log(li)
+}
+
+function persistToLocal() {
+
+  // lets persist the tasks to local storage 
+ 
+  const task = taskInput.value;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  tasks.push(task);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  
 }
 
 /* lets add the functionality that the delete icon to delete items from the list */
-
-
 
  function deleteItem(e) {
     if(e.target.parentElement.classList.contains('delete-item'))
@@ -88,3 +139,5 @@ function addTask(e) {
     }
   })
  }
+
+
