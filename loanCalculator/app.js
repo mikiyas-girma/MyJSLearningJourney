@@ -30,11 +30,31 @@ function calculateLoan(e) {
   const x = Math.pow(1 + calculatedInterest, calculatedPayments);
   const monthly = (principal*x*calculatedInterest)/(x-1);
 
+  if(isFinite(monthly)) {
   monthlyPayment.value = monthly.toFixed(2);
   totalPayment.value = (monthly * calculatedPayments).toFixed(2);
   totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
+  } else {
+    showError('please check your numbers');
+  }
+  
  
 e.preventDefault();
 }
 
+// show error function
+
+function showError(error) {
+  const errorDiv = document.createElement('div');
+  errorDiv.className = "alert alert-danger";
+  errorDiv.appendChild(document.createTextNode(error));
+
+  // lets get parent elements in which we insert this div
+  const card = document.querySelector('.card');
+  const heading = document.querySelector('.heading');
+
+  card.insertBefore(errorDiv, heading);
+
+
+}
 
