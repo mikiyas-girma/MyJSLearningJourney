@@ -11,6 +11,11 @@ const monthlyPayment = document.querySelector('#monthly-payment');
 const totalPayment = document.querySelector('#total-payment');
 const totalInterest = document.querySelector('#total-interest');
 
+const results = document.getElementById('results');
+const loading = document.getElementById('loading');
+
+loading.style.display = "none";
+results.style.display = "none";
 
 
 calculate.addEventListener('submit', calculateLoan);
@@ -19,6 +24,8 @@ calculate.addEventListener('submit', calculateLoan);
 // implementation for the calculator
 
 function calculateLoan(e) {
+ // hiding always when calculate buttom is clicked 
+  results.style.display = "none";
 
   // now calculating by using formula
 
@@ -34,12 +41,25 @@ function calculateLoan(e) {
   monthlyPayment.value = monthly.toFixed(2);
   totalPayment.value = (monthly * calculatedPayments).toFixed(2);
   totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
+
+  showResults();
+
   } else {
     showError('please check your numbers');
   }
-  
- 
+
 e.preventDefault();
+}
+
+// show results function 
+
+function showResults() {
+ loading.style.display = "inline-block";
+ setTimeout(() => {
+    loading.style.display = "none";
+    results.style.display = "inline-block";
+  }, 2000);
+
 }
 
 // show error function
@@ -55,6 +75,14 @@ function showError(error) {
 
   card.insertBefore(errorDiv, heading);
 
+  // now lets give time to remove the errorDiv
+  setTimeout(removeAlert, 2000);
 
+}
+
+// time out handler function
+
+function removeAlert() {
+  document.querySelector('.alert').remove();
 }
 
