@@ -21,10 +21,10 @@ guessBtn.addEventListener('click', numberGuesser);
 
 // lets declare variables
 
-const min = 1;
-const max = 10;
-const winningNum = 2;
-const guessesLeft = 3;
+let min = 1;
+let max = 10;
+let winningNum = 2;
+let guessesLeft = 3;
 
 minNum.textContent = min;
 maxNum.textContent = max;
@@ -42,18 +42,34 @@ function numberGuesser(e) {
 
     // Check if won
     if(guess === winningNum){
-      // Disable input
-      guessInput.disabled = true;
-      // Change border color
-      guessInput.style.borderColor = 'green';
-      // Set message
-      setMessage(`${winningNum} is correct, YOU WIN!`, 'green');
-  
+
+      // game over -- won
+      gameOver(true, `${winningNum} is correct, YOU WIN!`);
+
     } else {
+      guessesLeft -= 1;
+      if(guessesLeft === 0) {
+        // game over -- lost
+        gameOver(false, `Game Over! you lost.  ${winningNum} was the correct number.` );
+      }
   
     }
 
   e.preventDefault();
+}
+
+// game over function
+
+function gameOver(won, msg) {
+  won === true ? color = 'green' : color = 'red';
+
+     // Disable input
+     guessInput.disabled = true;
+     // Change border color
+     guessInput.style.borderColor = color;
+     //set message
+      setMessage(msg, color);
+
 }
 
 // Set message
