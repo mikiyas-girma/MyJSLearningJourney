@@ -1,41 +1,60 @@
 
 function easyHTTP() {
 
-  this.htttp = new XMLHttpRequest(); 
+  this.http = new XMLHttpRequest(); 
 }
 
 // make HTTP GET request
 // easyHTTP.prototype.get = function (url, callback) {
   
-//   this.htttp.open('GET', url, true);
+//   this.http.open('GET', url, true);
   
 //   let self = this;
-//   this.htttp.onload = function () {
-//   if(self.htttp.status === 200) {
-//     callback(null, self.htttp.responseText);
+//   this.http.onload = function () {
+//   if(self.http.status === 200) {
+//     callback(null, self.http.responseText);
 //   } else {
-//     callback('Error '  + self.htttp.status);
+//     callback('Error '  + self.http.status);
 //   }
 
 //   }
 
-//   this.htttp.send();
+//   this.http.send();
 // }
 
 
 // Make an HTTP POST Request
 
 
-easyHTTP.prototype.post = function (url, data, callback) {
-  this.htttp.open('POST', url, true);
-  this.htttp.setRequestHeader('Content-type', 'application/json');
+// easyHTTP.prototype.post = function (url, data, callback) {
+//   this.http.open('POST', url, true);
+//   this.http.setRequestHeader('Content-type', 'application/json');
+
+//   let self = this;
+//   this.http.onload = function () {
+//       callback(null, self.http.responseText);
+//     }
+
+//     this.http.send(JSON.stringify(data));
+//   }
+
+
+
+// Make an HTTP PUT Request
+
+easyHTTP.prototype.put = function (url, data, callback) {
+
+  this.http.open('PUT',url, true);
+  this.http.setRequestHeader('Content-type', 'application/json');
 
   let self = this;
-  this.htttp.onload = function () {
-      callback(null, self.htttp.responseText);
+  this.http.onload = function() {
+      callback(null, self.http.responseText )
     }
-
-    this.htttp.send(JSON.stringify(data));
+    
+    
+    
+    this.http.send(JSON.stringify(data));
   }
 
 
@@ -47,6 +66,9 @@ easyHTTP.prototype.post = function (url, data, callback) {
 
 
 
-// Make an HTTP PUT Request
+
+
+
+
 
 // Make an HTTP DELETE Request

@@ -31,16 +31,23 @@ const mypost = {
 };
 
 
-http.post('https://jsonplaceholder.typicode.com/posts', mypost, function (err, posts) {
-  if(err) {
-    console.log(err);
-  } else {
-    console.log(posts);
-  }
-});
+// http.post('https://jsonplaceholder.typicode.com/posts', mypost, function (err, posts) {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     console.log(posts);
+//   }
+// });
 
 
 // update post
 
+http.put('https://jsonplaceholder.typicode.com/posts/1', mypost, function(err, post) {
+  if(err) {
+    console.log(err);
+  } else {
+    console.log(post);
+  }
+});
 
 // delete posts
