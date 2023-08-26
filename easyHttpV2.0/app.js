@@ -20,6 +20,12 @@ const data = {
 
 
 // make put request and change user with id 5
-http.put('https://jsonplaceholder.typicode.com/users/5', data)
+// http.put('https://jsonplaceholder.typicode.com/users/5', data)
+// .then(data => console.log(data))
+// .catch(err => console.log(err))
+
+
+// make delete request
+http.delete('https://jsonplaceholder.typicode.com/users/2')
 .then(data => console.log(data))
-.catch(err => console.log(err))
+.catch(err => console.log(err));
