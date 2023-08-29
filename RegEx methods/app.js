@@ -16,9 +16,18 @@ let re;
   re = /gre?a?y\?/i;  // Escape characters in this case escaping ?
 
 
+  // Brackets[] - Character Sets
+  re = /gr[ea]y/i;  // must be e or a
+  re = /gr[^i]y/i;  // any thing except i works or matches
+  re = /[A-Z]ry/;  // matches any uppercase letters
+  re = /[A-Za-z]ry/;  // matches any  letters
+  re = /[0-9]ry/;  // matches any digits from 0 to 9
+
+  
+
 
  // the string to match and log result
- const str = 'GrTy';
+ const str = '1ry';
  const result = re.exec(str);
  console.log(result);
 
