@@ -32,9 +32,27 @@ let re;
 
   re = /([0-9]x){3}/i;
 
+  // Shorthand character classes
+  re = /\w/;   // matches word character or alphanumeric or _
+  re = /\w+/;   // matches one or more character
+  re = /\W/;   // matches non word character
+  re = /\d/;   // matches any digit
+  re = /\d+/;   // matches any digit one or more times
+  re = /\d+/;   // matches any digit one or more times
+  re = /\D/;   // matches any non digit 
+  re = /\s/;   // matches whitespace char
+  re = /\S/;   // matches non whitespace char
+  re = /hell\b/;   // matches non whitespace char
+
+
+
+
+
+
+
 
  // the string to match and log result
- const str = '3x3x3x';
+ const str = 'hello, welcome to the hell';
  const result = re.exec(str);
  console.log(result);
 
