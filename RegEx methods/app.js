@@ -44,7 +44,9 @@ let re;
   re = /\S/;   // matches non whitespace char
   re = /hell\b/;   // matches non whitespace char
 
-
+  // Assertions
+  re = /x(?=y)/;   // matches if x is must followed by y
+  re = /x(?!y)/;   // matches if x is must NOT followed by y
 
 
 
@@ -52,7 +54,7 @@ let re;
 
 
  // the string to match and log result
- const str = 'hello, welcome to the hell';
+ const str = 'xqy';
  const result = re.exec(str);
  console.log(result);
 
