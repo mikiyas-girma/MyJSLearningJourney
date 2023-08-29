@@ -30,4 +30,19 @@ function validateZip() {
 
 
 
+function validateEmail() {
+  const email = document.getElementById('email');
+  const re = /^[A-Za-z]([A-Za-z0-9_\-\.]+)@([A-Za-z0-9_\-\.]+)\.([A-Za-z]{2,5})$/;
+  if(!re.test(email.value)) {
+    email.classList.add('is-invalid');
+  } else {
+    email.classList.remove('is-invalid');
+  }
+
+}
+
+function validatephone() {
+
+
+}
 
