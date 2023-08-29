@@ -42,7 +42,13 @@ function validateEmail() {
 }
 
 function validatephone() {
-
+  const phone = document.getElementById('phone');
+  const re = /^\+(\d{1,3})[ ]?(\d{9,10})$/;
+  if(!re.test(phone.value)) {
+    phone.classList.add('is-invalid');
+  } else {
+    phone.classList.remove('is-invalid');
+  }
 
 }
 
