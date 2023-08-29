@@ -23,11 +23,14 @@ let re;
   re = /[A-Za-z]ry/;  // matches any  letters
   re = /[0-9]ry/;  // matches any digits from 0 to 9
 
-  
+  //  Braces{} - Quantifiers
+  re = /hel{2}o/i;  // there must be two l's
+  re = /hel{2,}o/i;  // there must be at least two l's
+  re = /hel{2,4}o/i;  // there must be at least two and maz of 4 l's
 
 
  // the string to match and log result
- const str = '1ry';
+ const str = 'Helo';
  const result = re.exec(str);
  console.log(result);
 
