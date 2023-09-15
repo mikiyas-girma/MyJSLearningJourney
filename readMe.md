@@ -4,7 +4,7 @@ Welcome to my JavaScript Learning Journey repository! 🌟
 
 ## About
 
-This repository documents my journey of learning JavaScript through a comprehensive Udemy course and from various online resources. Here, you'll find a collection of projects that I've completed while following along with the course content. Each project is a stepping stone in my coding journey, helping me grasp fundamental concepts and practical application of JavaScript.
+This repository documents my journey of learning JavaScript  from various online resources. Here, you'll find a collection of projects that I've completed while following along with the course content. Each project is a stepping stone in my coding journey, helping me grasp fundamental concepts and practical application of JavaScript.
 
 ## Projects
 
